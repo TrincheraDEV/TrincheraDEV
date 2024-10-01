@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+/** Change Flux Primary to TDEV Primary **/
+[data-flux-button].bg-zinc-800 {
+    @apply bg-primary hover:bg-primary-dark dark:text-white dark:hover:bg-primary-light;
+}
+
+/***********
+ * Lessons
+ ***********/
+
+#lesson-content {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply dark:text-white;
+    }
+}
