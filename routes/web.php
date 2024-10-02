@@ -74,10 +74,3 @@ if (app()->environment('local', 'staging', 'testing')) {
         })->name('dashboard-courses-add');
     });
 }
-
-// Catch-all route for production (optional)
-if (app()->environment('production')) {
-    Route::any('{any}', function () {
-        return redirect('/');
-    })->where('any', '.*');
-}
