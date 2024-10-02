@@ -19,8 +19,7 @@
 
     <div class="px-6 mx-auto max-w-7xl lg:px-8">
         <div class="text-center">
-            <img src="{{ asset('storage/images/tdev/trincheradev-logo.png') }}" alt="Trinchera DEV"
-                class="w-48 mx-auto">
+            <img src="{{ asset('images/tdev/trincheradev-logo.png') }}" alt="Trinchera DEV" class="w-48 mx-auto">
 
             <h1 class="max-w-3xl mx-auto mt-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl text-balance">
                 We are creating the courses and content you need
