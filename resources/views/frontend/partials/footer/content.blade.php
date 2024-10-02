@@ -3,7 +3,8 @@
 
         <!-- Project -->
         <div>
-            <img class="h-7" src="{{ asset('storage/images/trincheradev-icon.png') }}" alt="{{ config('app.name') }}">
+            <img class="h-7" src="{{ asset('storage/images/tdev/trincheradev-icon.png') }}"
+                alt="{{ config('app.name') }}">
 
             <p class="my-3 text-sm leading-6 text-gray-300">
                 Learn the skills you need to build and launch your own projects. Get access and start
