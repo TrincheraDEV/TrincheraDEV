@@ -105,7 +105,7 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                 <div class="order-2 col-span-12 md:col-span-4">
 
                     @auth
-                    @if(!auth()->user()->subscribed('basic'))
+                    @if(!auth()->user()->subscribed('basic') || !auth()->user()->isAdmin())
                     <!-- Buy -->
                     <x-frontend.lessons.block>
                         <x-slot:title>
