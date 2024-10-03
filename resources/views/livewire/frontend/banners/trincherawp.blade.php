@@ -31,15 +31,16 @@ new Class extends Component {
             setTimeout(() => { bannerVisible = true }, bannerVisibleAfter);
         }
     " class="flex items-center justify-between gap-x-6 bg-red-500 px-6 py-2.5 sm:pr-3.5 lg:pl-8">
-        <p class="text-sm leading-6 text-white">
-            <a href="https://trincherawp.com" target="_blank" title="Visita la web de Trinchera WP">
-                <strong class="font-semibold">¿Prefieres aprender en Español?</strong>
-                <svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
+        <div class="text-sm leading-6 text-white">
+            <a href="https://trincherawp.com" target="_blank" title="Visita la web de Trinchera WP"
+                class="flex flex-wrap items-center">
+                <div><strong class="flex-1 font-semibold">¿Prefieres aprender en Español?</strong></div>
+                <svg viewBox="0 0 2 2" class="mx-2 h-0.5 w-0.5 fill-current hidden md:inline" aria-hidden="true">
                     <circle cx="1" cy="1" r="1" />
                 </svg>
-                Visita la web de Trinchera WP&nbsp;<span aria-hidden="true">&raquo;</span>
+                <div>Visita la web de Trinchera WP&nbsp;<span aria-hidden="true">&raquo;</span></div>
             </a>
-        </p>
+        </div>
         <button type="button" @click="dismissBanner()" class="-m-3 flex-none p-3 focus-visible:outline-offset-[-4px]">
             <span class="sr-only">Dismiss</span>
             <svg class="w-5 h-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

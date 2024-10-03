@@ -30,7 +30,7 @@
         <flux:spacer />
 
         <div class="flex items-center gap-2">
-            <flux:button href="{{ route('home') . '/' . Str::before(request()->path(), 'lessons/') }}" size="sm"
+            <flux:button href="{{ config('app.url') . '/' . Str::before(request()->path(), 'lessons/') }}" size="sm"
                 variant="ghost">
                 Exit course
             </flux:button>

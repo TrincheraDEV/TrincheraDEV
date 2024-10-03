@@ -99,10 +99,10 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
 
             <!-- Lesson Body -->
             <div
-                class="flex-1 w-full max-w-[1148px] mx-auto px-4 md:px-6 py-2.5 md:pt-4 md:pb-96 pb-48 grid grid-cols-12 gap-6">
+                class="flex-1 w-full max-w-[1148px] mx-auto px-4 md:px-6 py-2.5 md:pt-4 lg:pb-96 md:pb-48 pb-24 grid grid-cols-12 gap-6">
 
                 <!-- Lesson Sidebar -->
-                <div class="col-span-12 lg:order-2 lg:col-span-4">
+                <div class="order-2 col-span-12 md:col-span-4">
 
                     @auth
                     @if(!auth()->user()->subscribed('basic'))
@@ -150,7 +150,7 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
 
                 <!-- Lesson Content -->
                 <div id="lesson-content"
-                    class="col-span-12 mt-2 text-sm prose lg:col-span-8 md:text-base text-zinc-900 dark:text-zinc-300">
+                    class="col-span-12 mt-2 text-sm prose md:col-span-8 lg:col-span-8 md:text-base text-zinc-900 dark:text-zinc-300">
                     {!! Str::markdown($lesson->content) !!}
                 </div>
             </div>

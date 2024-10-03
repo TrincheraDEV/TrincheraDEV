@@ -27,13 +27,13 @@ $loopIndex = 0;
     </section>
 
     <!-- Course Content -->
-    <section class="pb-32 bg-gray-100 dark:bg-zinc-900">
+    <section class="pb-16 bg-gray-100 md:pb-32 dark:bg-zinc-900">
         <x-frontend.container.container>
             <x-frontend.container.container-inner>
 
                 <div class="flex flex-col gap-4 divide-y divide-gray-300 dark:divide-zinc-700 md:gap-12 ">
                     @foreach ($sections as $section)
-                    <div class="pt-12">
+                    <div class="pt-12 mb-8">
                         <div class="max-w-3xl">
                             <p class="text-sm text-gray-600 dark:text-zinc-300 md:text-lg">
                                 Module {{ $loop->index + 1 }}
