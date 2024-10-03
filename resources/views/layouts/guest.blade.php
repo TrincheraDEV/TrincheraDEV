@@ -26,7 +26,13 @@
 
     @livewireScripts
 
+    @if (app()->environment() === 'production')
+    @if (auth()->check() && auth()->user()->id !== 1)
+    @else
+    @include('frontend.scripts.activecampaign')
     @include('frontend.scripts.simple-analytics')
+    @endif
+    @endif
 </body>
 
 </html>

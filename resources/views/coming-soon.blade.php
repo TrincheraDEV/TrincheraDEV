@@ -44,17 +44,6 @@
         </div>
     </div>
 
-    @if (app()->environment('production'))
-    <!-- ActiveCampaign -->
-    <script>
-        (function (e, t, o, n, p, r, i) { e.visitorGlobalObjectAlias = n; e[e.visitorGlobalObjectAlias] = e[e.visitorGlobalObjectAlias] || function () { (e[e.visitorGlobalObjectAlias].q = e[e.visitorGlobalObjectAlias].q || []).push(arguments) }; e[e.visitorGlobalObjectAlias].l = (new Date).getTime(); r = t.createElement("script"); r.src = o; r.async = true; i = t.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) })(window, document, "https://diffuser-cdn.app-us1.com/diffuser/diffuser.js", "vgo");
-        vgo('setAccount', '651451965');
-        vgo('setTrackByDefault', true);
-
-        vgo('process');
-    </script>
-    @endif
-
     <script>
         document.addEventListener("alpine:init", () => {
             Alpine.data('form', () => ({
@@ -95,15 +84,10 @@
     </script>
 
     @if (app()->environment() === 'production')
-
     @if (auth()->check() && auth()->user()->id !== 1)
     @else
-    <!-- 100% privacy-first analytics -->
-    <script data-strict-utm="true" async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <noscript>
-        <img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt=""
-            referrerpolicy="no-referrer-when-downgrade" />
-    </noscript>
+    @include('frontend.scripts.activecampaign')
+    @include('frontend.scripts.simple-analytics')
     @endif
     @endif
 </body>
