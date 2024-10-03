@@ -3,7 +3,7 @@
 
     <flux:brand href="{{ route('home') }}" logo="{{ asset('images/tdev/trincheradev-icon.png') }}" name="Trinchera DEV"
         class="max-lg:hidden dark:hidden" />
-    <flux:brand href="{{ route('home') }}" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Trinchera DEV"
+    <flux:brand href="{{ route('home') }}" logo="{{ asset('images/tdev/trincheradev-icon.png') }}" name="Trinchera DEV"
         class="max-lg:!hidden hidden dark:flex" />
 
     @if (app()->environment('local') && auth()->user()->isAdmin())
@@ -42,7 +42,9 @@
 
                 <form method="POST" name="logout" action="{{ route('logout') }}">
                     @csrf
-                    <flux:navmenu.item href="javascript:document.logout.submit()" icon="arrow-right-start-on-rectangle">
+                    <flux:navmenu.item href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); this.closest('form').submit();"
+                        icon="arrow-right-start-on-rectangle">
                         Logout
                     </flux:navmenu.item>
                 </form>
@@ -67,7 +69,7 @@
 
     <flux:brand href="{{ route('home') }}" logo="{{ asset('images/tdev/trincheradev-icon.png') }}" name="Trinchera DEV"
         class="px-2 dark:hidden" />
-    <flux:brand href="{{ route('home') }}" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Trinchera DEV"
+    <flux:brand href="{{ route('home') }}" logo="{{ asset('images/tdev/trincheradev-icon.png') }}" name="Trinchera DEV"
         class="hidden px-2 dark:flex" />
 
     <flux:navlist variant="outline">
