@@ -53,6 +53,8 @@
     @endpersist
 
     @fluxScripts
+
+    @include('frontend.scripts.simple-analytics')
 </body>
 
 </html>
