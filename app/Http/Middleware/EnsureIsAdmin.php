@@ -15,6 +15,10 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (null === $request->user()) {
+            return redirect()->route('coming-soon');
+        }
+
         if (!$request->user()->isAdmin()){
             return redirect()->route('account.account');
         }
