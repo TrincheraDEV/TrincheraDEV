@@ -26,7 +26,9 @@ class CourseController extends Controller
     public function showLesson(string $courseSlug, string $lessonSlug)
     {
         $course = Course::where('slug', $courseSlug)->firstOrFail();
-        $lesson = Lesson::where('slug', $lessonSlug)->firstOrFail();
+        $lesson = Lesson::whereHas('sections', function ($query) use ($course, $lessonSlug) {
+            $query->where('course_id', $course->id)->where('lessons.slug', $lessonSlug);
+        })->firstOrFail();
         
         return view('frontend.courses.show-lesson', compact('course', 'lesson'));
     }

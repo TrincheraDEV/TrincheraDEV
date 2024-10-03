@@ -36,7 +36,7 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                     <div
                         class="relative z-0 w-full h-full overflow-hidden transition-all duration-75 ease-in-out aspect-video">
                         @auth
-                        @if(auth()->user()->subscribed('basic'))
+                        @if(auth()->user()->subscribed('basic') || auth()->user()->isAdmin())
                         <iframe src="https://player.vimeo.com/video/{{ $lesson->video_id }}" class="w-full h-full"
                             allow="fullscreen; picture-in-picture;"></iframe>
                         @else
