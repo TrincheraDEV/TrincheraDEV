@@ -25,7 +25,7 @@ class Enrollment extends Model
 
     public static function enrolledToCourse($courseId, $userId)
     {
-        if (Enrollment::where('course_id', '=', $courseId)->where('user_id', '=', $userId)->first()) {
+        if (Enrollment::query()->where('course_id', '=', $courseId)->where('user_id', '=', $userId)->first()) {
             return true;
         }
         

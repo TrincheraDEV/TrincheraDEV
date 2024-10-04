@@ -20,7 +20,7 @@ class Lesson extends Model
 
     public function sections(): BelongsToMany
     {
-        return $this->belongsToMany(Section::class, 'lesson_section')->withPivot('order');
+        return $this->belongsToMany(Section::class)->withPivot('order');
     }
 
     public function getCourseId(): int
@@ -47,6 +47,6 @@ class Lesson extends Model
 
     public function completedByUsers()
     {
-        return $this->belongsToMany(User::class, 'lesson_completions')->withTimestamp('completed_at');
+        return $this->belongsToMany(User::class, 'lesson_completions')->withTimestamps('completed_at');
     }
 }

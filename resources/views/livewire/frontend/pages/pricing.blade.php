@@ -23,7 +23,7 @@ new Class extends Component {
             Select plan
         </flux:button>
         @else
-        <flux:button href="{{ route('register') }}" variant="primary">
+        <flux:button href="#register" variant="primary">
             Select plan
         </flux:button>
         @endauth

@@ -15,12 +15,13 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (app()->environment('local')) {
-            return $next($request);
-        }
 
         if (null === $request->user()) {
             return redirect()->route('coming-soon');
+        }
+        
+        if (app()->environment('local')) {
+            return $next($request);
         }
 
         if (!$request->user()->isAdmin()){

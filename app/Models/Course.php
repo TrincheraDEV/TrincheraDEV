@@ -29,6 +29,6 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'enrollments')->withTimestamp('enrolled_at');
+        return $this->belongsToMany(User::class, 'enrollments')->withTimestamps('enrolled_at');
     }
 }

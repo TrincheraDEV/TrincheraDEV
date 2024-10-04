@@ -8,9 +8,9 @@ new Class extends Component {
     public Lesson $lesson;
     
     public function complete()
-    {
+    {        
         sleep(1);
-        
+
         LessonCompletion::create([
             'user_id' => auth()->user()->id,
             'lesson_id' => $this->lesson->id,
@@ -22,6 +22,7 @@ new Class extends Component {
         $nextLesson = LessonCompletion::getNextLesson($this->lesson->id, $this->lesson->sections->first()->course_id);
 
         if ($nextLesson) {
+
             return redirect()->route('courses.show-lesson', [
                 'courseSlug' => $nextLesson->sections->first()->course->slug,
                 'lessonSlug' => $nextLesson->slug

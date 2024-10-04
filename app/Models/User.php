@@ -85,7 +85,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->id === 1;
+        return $this->getKey() === 1;
     }
 
     public function findStripeCustomerByEmail($email)
@@ -116,11 +116,11 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'enrollments')->withTimestamp('enrolled_at');
+        return $this->belongsToMany(Course::class, 'enrollments')->withTimestamps('enrolled_at');
     }
 
     public function completedLessons()
     {
-        return $this->belongsToMany(Lesson::class, 'lesson_completions')->withTimestamp('completed_at');
+        return $this->belongsToMany(Lesson::class, 'lesson_completions')->withTimestamps('completed_at');
     }
 }

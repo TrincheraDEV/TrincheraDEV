@@ -30,13 +30,13 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('ptj5knm_beu1krf!YVW'),
         ]);
 
-        $stripeCustomer = $user->findStripeCustomerByEmail($user->email);
-        $stripeCustomer2 = $user2->findStripeCustomerByEmail($user2->email);
+        $stripeCustomer = $user->first()->findStripeCustomerByEmail($user->getAttribute('email'));
+        $stripeCustomer2 = $user2->first()->findStripeCustomerByEmail($user2->getAttribute('email'));
 
         if (!$stripeCustomer){
             $user->createAsStripeCustomer([
-                'email' => $user->email,
-                'name' => $user->name,
+                'email' => $user->getAttribute('email'),
+                'name' => $user->getAttribute('name'),
             ]);
         } else {
             $user->stripe_id = $stripeCustomer->id;
@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
 
         if (!$stripeCustomer2){
             $user2->createAsStripeCustomer([
-                'email' => $user2->email,
-                'name' => $user2->name,
+                'email' => $user2->getAttribute('email'),
+                'name' => $user2->getAttribute('name'),
             ]);
         } else {
             $user2->stripe_id = $stripeCustomer2->id;

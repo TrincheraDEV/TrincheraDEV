@@ -41,7 +41,8 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                         @if(auth()->check() && App\Models\Enrollment::enrolledToCourse($course->id, auth()->user()->id))
                         <iframe src="https://player.vimeo.com/video/{{ $lesson->video_id }}" class="w-full h-full"
                             allow="fullscreen; picture-in-picture;"></iframe>
-                        @endif
+
+                        @else
 
                         <!-- Video CTA -->
                         <div class="flex flex-col items-center justify-center w-full h-full">
@@ -68,6 +69,7 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                             <livewire:frontend.courses.enroll :course="$course" />
                             @endif
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

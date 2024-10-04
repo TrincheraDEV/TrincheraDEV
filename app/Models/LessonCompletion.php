@@ -25,7 +25,7 @@ class LessonCompletion extends Model
 
     public function lessonCompleted($lessonId, $userId)
     {
-        if (LessonCompletion::where('course_id', '=', $lessonId)->where('user_id', '=', $userId)->first()) {
+        if (LessonCompletion::query()->where('course_id', '=', $lessonId)->where('user_id', '=', $userId)->first()) {
             return true;
         }
 
@@ -34,7 +34,7 @@ class LessonCompletion extends Model
 
     public static function enrolledToCourse($courseId, $userId)
     {
-        if (Enrollment::where('course_id', '=', $courseId)->where('user_id', '=', $userId)->first()) {
+        if (Enrollment::query()->where('course_id', '=', $courseId)->where('user_id', '=', $userId)->first()) {
             return true;
         }
         
@@ -43,7 +43,7 @@ class LessonCompletion extends Model
 
     public static function getNextLesson($currentLessonId, $courseId)
     {
-        $currentLesson = Lesson::findOrFail($currentLessonId);
+        $currentLesson = Lesson::query()->findOrFail($currentLessonId);
         $currentSection = $currentLesson->sections()->where('course_id', $courseId)->first();
 
         if (!$currentSection) {
@@ -63,7 +63,7 @@ class LessonCompletion extends Model
             ->first();
 
         if (!$nextLesson) {
-            $nextSection = Section::where('course_id', $courseId)
+            $nextSection = Section::query()->where('course_id', $courseId)
                 ->where('order', '>', $currentSection->order)
                 ->orderBy('order')
                 ->first();
