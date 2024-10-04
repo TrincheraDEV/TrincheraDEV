@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Middleware\EnsureIsAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +24,16 @@ Route::middleware([EnsureIsAdmin::class])->group(function () {
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
     Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
     Route::get('/courses/{courseSlug}/lessons/{lessonSlug}', [CourseController::class, 'showLesson'])->name('courses.show-lesson');
+
+    Route::get('/terms-of-use', function () {
+        $termsContent = File::get(resource_path('markdown/terms.md'));
+        return view('frontend.pages.legal.terms', compact('termsContent'));
+    })->name('legal.terms');
+
+    Route::get('/privacy-policy', function () {
+        $policyContent = File::get(resource_path('markdown/policy.md'));
+        return view('frontend.pages.legal.policy', compact('policyContent'));
+    })->name('legal.policy');
 });
 
 Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {

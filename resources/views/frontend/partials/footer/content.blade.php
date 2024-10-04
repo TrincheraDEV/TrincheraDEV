@@ -38,11 +38,11 @@
                 </x-frontend.footer.nav-title>
 
                 <x-frontend.footer.nav-content>
-                    <x-frontend.footer.nav-item href="#" target="_self">
+                    <x-frontend.footer.nav-item href="{{ route('legal.terms') }}" target="_self">
                         Terms of service
                     </x-frontend.footer.nav-item>
 
-                    <x-frontend.footer.nav-item href="#" target="_self">
+                    <x-frontend.footer.nav-item href="{{ route('legal.policy') }}" target="_self">
                         Privacy policy
                     </x-frontend.footer.nav-item>
                 </x-frontend.footer.nav-content>
