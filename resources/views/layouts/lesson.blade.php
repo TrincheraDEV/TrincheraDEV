@@ -39,7 +39,7 @@
             <flux:button href="{{ route('login') }}" size="sm">
                 Log In
             </flux:button>
-            <flux:button href="{{ route('register') }}" size="sm" variant="primary">
+            <flux:button href="#register" size="sm" variant="primary">
                 Sign Up
             </flux:button>
             @endif

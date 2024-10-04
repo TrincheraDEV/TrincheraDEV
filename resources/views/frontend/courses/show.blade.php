@@ -17,10 +17,14 @@ $loopIndex = 0;
                     {{ $course->description }}
                 </p>
 
+                @auth
                 @if(auth()->user()->subscribed('basic') || auth()->user()->id == 1)
+                @if(!App\Models\Enrollment::enrolledToCourse($course->id, auth()->user()->id))
                 <div class="mt-6">
                     <livewire:frontend.courses.enroll :course="$course" />
                 </div>
+                @endif
+                @endif
                 @endif
             </x-frontend.container.container-inner>
         </x-frontend.container.container>

@@ -6,6 +6,12 @@ use Livewire\Volt\Component;
 
 new Class extends Component {
     public Course $course;
+    public $isEnrolled = false;
+
+    public function mount()
+    {
+        $this->isEnrolled = Enrollment::enrolledToCourse($this->course->id, auth()->id());
+    }
     
     public function enroll()
     {
@@ -17,19 +23,17 @@ new Class extends Component {
             'enrolled_at' => now(),
         ]);
 
-        Flux::toast('Enrolled to course successfully');        
+        Flux::toast('Enrolled to course successfully');
+        
+        return redirect(request()->header('Referer'));
     }
 }
 
 ?>
 <div>
-    @if(auth()->user())
-    @if(!Enrollment::enrolledToCourse($this->course->id, auth()->user()->id))
     <form wire:submit="enroll">
         <flux:button type="submit">
             Enroll to course
         </flux:button>
     </form>
-    @endif
-    @endif
 </div>

@@ -6,7 +6,7 @@
     <flux:brand href="{{ route('home') }}" logo="{{ asset('images/tdev/trincheradev-icon.png') }}" name="Trinchera DEV"
         class="max-lg:!hidden hidden dark:flex" />
 
-    @if (app()->environment('local') && auth()->user()->isAdmin())
+    @if (app()->environment('local'))
     <flux:badge size="sm" color="blue">Local</flux:badge>
     @endif
 
@@ -56,6 +56,7 @@
             <flux:button href="{{ route('pricing') }}" size="sm" variant="ghost" class="!text-zinc-500">
                 Pricing
             </flux:button>
+            <flux:separator orientation="vertical" />
             <flux:button href="{{ route('login') }}" size="sm" variant="ghost">Log In</flux:button>
             <flux:button href="#" size="sm" variant="primary">Sign Up</flux:button>
         </div>

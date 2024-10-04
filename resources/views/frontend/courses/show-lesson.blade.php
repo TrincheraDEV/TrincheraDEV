@@ -4,11 +4,12 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
 
 <x-lesson-layout>
 
-    <flux:sidebar sticky stashable class="border-r bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700">
+    <flux:sidebar sticky stashable
+        class="[&>ui-disclosure>button>span]:text-left border-r bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-700">
         <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
         @foreach ($course->sections as $section)
-        <flux:navlist.group expandable icon="check-circle" heading="{{ $section->title }}" class="hidden lg:grid">
+        <flux:navlist.group expandable heading="{{ $section->title }}">
             @foreach ($section->lessons as $sectionLesson)
             <flux:navlist.item id="{{ $sectionLesson->id }}" icon="check-circle"
                 href="{{ route('courses.show-lesson', ['courseSlug' => $course->slug, 'lessonSlug' => $sectionLesson->slug]) }}"
@@ -35,31 +36,38 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                     class="w-full max-h-50vh max-w-[1100px] flex items-center justify-center font-medium text-zinc-400 aspect-video shrink-0 bg-transparent">
                     <div
                         class="relative z-0 w-full h-full overflow-hidden transition-all duration-75 ease-in-out aspect-video">
-                        @auth
-                        @if(auth()->user()->subscribed('basic') || auth()->user()->isAdmin())
+
+                        <!-- Video -->
+                        @if(auth()->check() && App\Models\Enrollment::enrolledToCourse($course->id, auth()->user()->id))
                         <iframe src="https://player.vimeo.com/video/{{ $lesson->video_id }}" class="w-full h-full"
                             allow="fullscreen; picture-in-picture;"></iframe>
-                        @else
+                        @endif
+
+                        <!-- Video CTA -->
                         <div class="flex flex-col items-center justify-center w-full h-full">
                             <flux:heading size="xl">To access this content:</flux:heading>
+
+                            <!-- Video CTA » User is guest -->
+                            @guest
+                            <div class="flex items-center gap-2 mt-4">
+                                <flux:button href="{{ route('login') }}" size="sm">Log In</flux:button>
+                                <flux:button href="#register" size="sm" variant="primary">Sign Up</flux:button>
+                            </div>
+                            @endguest
+
+                            <!-- Video CTA » User is logged in and not subscribed -->
+                            @if(auth()->check() && !auth()->user()->subscribed('basic'))
                             <flux:button href="{{ route('account.subscription') }}" class="mt-4">
                                 Update your subscription
                             </flux:button>
+                            @endif
+
+                            <!-- Video CTA » User is logged in, subscribed but not enrolled in the course -->
+                            @if(auth()->check() && auth()->user()->subscribed('basic') &&
+                            !App\Models\Enrollment::enrolledToCourse($course->id, auth()->user()->id))
+                            <livewire:frontend.courses.enroll :course="$course" />
+                            @endif
                         </div>
-                        @endif
-                        @else
-                        <div class="flex flex-col items-center justify-center w-full h-full">
-                            <flux:heading size="xl">To access this content:</flux:heading>
-                            <div class="flex items-center gap-2 mt-4">
-                                <flux:button href="{{ route('login') }}" size="sm">
-                                    Log In
-                                </flux:button>
-                                <flux:button href="{{ route('register') }}" size="sm" variant="primary">
-                                    Sign Up
-                                </flux:button>
-                            </div>
-                        </div>
-                        @endif
                     </div>
                 </div>
             </div>
@@ -140,7 +148,7 @@ $lessonCompleted = $lesson->completions->where('user_id', auth()->id())->isNotEm
                             </div>
                         </div>
 
-                        <flux:button href="{{ route('register') }}" class="w-full mt-4" variant="primary">
+                        <flux:button href="#register" class="w-full mt-4" variant="primary">
                             Sign up now
                         </flux:button>
                     </x-frontend.lessons.block>
